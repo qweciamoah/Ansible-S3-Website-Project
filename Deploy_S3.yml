@@ -1,0 +1,60 @@
+---
+
+- name: Deploy Static Website to S3
+  hosts: localhost
+  connection: local
+  collections:
+    - amazon.aws
+    - community.aws
+
+  vars:
+    bucket_name: ansible-s3-static-site
+    file_root: /Users/macintoshssd/Ansible-s3-website-project/
+    region: us-east-1
+
+  tasks:
+    - name: Create S3 bucket
+      amazon.aws.s3_bucket:
+        name: "{{ bucket_name }}"
+        state: present
+        region: "{{ region }}"
+
+    - name: Apply public read policy
+      amazon.aws.s3_bucket:
+        name: "{{ bucket_name }}"
+        region: "{{ region }}"
+        policy: |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::{{ bucket_name }}/*"
+              }
+            ]
+          }
+
+    - name: Enable website hosting (with AWS CLI)
+      shell: |
+        aws s3 website s3://{{ bucket_name }} \
+          --index-document index.html \
+          --error-document error.html \
+          --region {{ region }}
+      environment:
+        AWS_ACCESS_KEY_ID: "{{ lookup('env', 'AWS_ACCESS_KEY_ID') }}"
+        AWS_SECRET_ACCESS_KEY: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
+        AWS_DEFAULT_REGION: "{{ region }}"
+
+    - name: Upload Website Files
+      community.aws.s3_sync:
+        bucket: "{{ bucket_name }}"
+        file_root: "{{ file_root }}"
+        region: "{{ region }}"
+        mode: push
+        delete: yes
+
+    - name: Output Website URL
+      debug:
+        msg: "Website URL: http://{{ bucket_name }}.s3-website-{{ region }}.amazonaws.com"
