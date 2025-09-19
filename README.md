@@ -6,9 +6,9 @@ This project automates the deployment of a static website (a professional resume
  📖 Overview
 
 The repository contains:
-*   **Static Website Files:** HTML and CSS for a professional resume website.
-*   **Ansible Playbook:** Code to provision and configure the AWS S3 infrastructure and deploy the website.
-*   **GitHub Integration:** Version control for the entire project.
+*   Static Website Files: HTML and CSS for a professional resume website.
+*   Ansible Playbook: Code to provision and configure the AWS S3 infrastructure and deploy the website.
+*   GitHub Integration: Version control for the entire project.
 
 With a single command, the Ansible playbook will:
 1.  Create a configured S3 bucket.
@@ -34,10 +34,10 @@ Before running the playbook, ensure you have the following installed and configu
 3.  AWS CLI:Installed and configured with credentials for an IAM user that has permissions to create and manage S3 buckets.
     ```bash
     aws configure
-    # AWS Access Key ID [None]: YOUR_ACCESS_KEY
-    # AWS Secret Access Key [None]: YOUR_SECRET_KEY
-    # Default region name [None]: us-east-1
-    # Default output format [None]: json
+    AWS Access Key ID [None]: YOUR_ACCESS_KEY
+    AWS Secret Access Key [None]: YOUR_SECRET_KEY
+    Default region name [None]: us-east-1
+    Default output format [None]: json
     ```
 4.  Export AWS Credentials: The playbook uses environment variables for security.
     ```bash
@@ -86,6 +86,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 👤 Author
 
 Paul Amoah 
+
 DevOps Engineer  
 - Email: Amoahpaul580@gmail.com
 - LinkedIn:https://www.linkedin.com/in/paul-amoah123
