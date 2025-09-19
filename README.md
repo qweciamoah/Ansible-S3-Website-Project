@@ -17,8 +17,8 @@ With a single command, the Ansible playbook will:
 4.  Upload all website files.
 5.  Output the website URL.
 
- 📁 Project Structure
 
+ 📁 Project Structure
 `
 Ansible-S3-Website-Project/ │
    ├── index.html    # Main resume webpage
