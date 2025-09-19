@@ -20,8 +20,11 @@ With a single command, the Ansible playbook will:
  📁 Project Structure
 
 `
-
-Ansible-S3-Website-Project/ │ ├── index.html          # Main resume webpage ├── error.html          # Custom 404 error page ├── style.css           # Stylesheet for the website ├── deploy_s3.yml       # Ansible playbook for deployment └── README.md           # This file
+Ansible-S3-Website-Project/ │ ├── index.html
+ # Main resume webpage ├── error.html
+ # Custom 404 error page ├── style.css
+ # Stylesheet for the website ├── deploy_s3.yml
+ # Ansible playbook for deployment └── README.md       
 
 ```
 
